@@ -14,6 +14,8 @@ import java.util.logging.Logger;
  *
  * @author Fedi
  */
+
+//sssss
 public class config {
 
     static config data;
