@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Services;
 
 /**
  *
- * @author Fedi
+ * @author benka
  */
-public class EntityUser {
-    //mmm
+public class babysiterServices {
     
 }
