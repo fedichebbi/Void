@@ -19,7 +19,7 @@ public class config {
 
     static config data;
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://127.0.0.1/pidev";
+    static final String DB_URL = "jdbc:mysql://127.0.0.1/Void";
     private Connection conn;
     //  Database credentials
     static final String USER = "root";

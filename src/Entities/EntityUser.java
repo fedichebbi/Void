@@ -10,6 +10,7 @@ package Entities;
  * @author Fedi
  */
 public class EntityUser {
+
     int id;
     String pseudo;
     String password;
@@ -18,13 +19,13 @@ public class EntityUser {
     String email;
     String adresse;
     String date_naissance;
-    
-    public EntityUser()
-    {
-        
+    String statut;
+
+    public EntityUser() {
+
     }
 
-    public EntityUser(int id, String pseudo, String password, String nom, String prenom, String email, String adresse, String date_naissance) {
+    public EntityUser(int id, String pseudo, String password, String nom, String prenom, String email, String adresse, String date_naissance, String statut) {
         this.id = id;
         this.pseudo = pseudo;
         this.password = password;
@@ -33,9 +34,8 @@ public class EntityUser {
         this.email = email;
         this.adresse = adresse;
         this.date_naissance = date_naissance;
+        this.statut = statut;
     }
-    
-    
 
     public int getId() {
         return id;
@@ -100,6 +100,13 @@ public class EntityUser {
     public void setDate_naissance(String date_naissance) {
         this.date_naissance = date_naissance;
     }
-    
-    
+
+    public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+
 }

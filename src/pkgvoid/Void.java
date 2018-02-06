@@ -5,6 +5,9 @@
  */
 package pkgvoid;
 
+import Entities.EntityUser;
+import Services.*;
+import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,9 +32,15 @@ public class Void extends Application {
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         launch(args);
+        ServiceUser su= new ServiceUser();
+        EntityUser user=new EntityUser(2, "888","88","abc", "abc", "abc", "abc", "88","abc");
+        //su.ajouterUser(user);
+        //su.supprimerUser(5);
+        //su.modifierUser(user, 6);
     }
     
 }
