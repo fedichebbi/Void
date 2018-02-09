@@ -20,9 +20,10 @@ import javafx.stage.Stage;
  */
 public class Void extends Application {
     
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUIs/GUILogin.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -36,11 +37,7 @@ public class Void extends Application {
      */
     public static void main(String[] args) throws SQLException {
         launch(args);
-        ServiceUser su= new ServiceUser();
-        EntityUser user=new EntityUser(2, "888","88","abc", "abc", "abc", "abc", "88","abc");
-        //su.ajouterUser(user);
-        //su.supprimerUser(5);
-        //su.modifierUser(user, 6);
+
     }
     
 }

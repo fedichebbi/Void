@@ -36,6 +36,7 @@ public class EntityUser {
         this.date_naissance = date_naissance;
         this.statut = statut;
     }
+    
 
     public int getId() {
         return id;
