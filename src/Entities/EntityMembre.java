@@ -16,8 +16,9 @@ public class EntityMembre extends EntityUser {
     public EntityMembre() {
     }
 
-    public EntityMembre(int id, String pseudo, String password, String nom, String prenom, String email, String adresse, String date_naissance,String statut) {
-        super(id, pseudo, password, nom, prenom, email, adresse, date_naissance,statut);
+    public EntityMembre(String type, int id, String pseudo, String password, String email, String sexe) {
+        super(id, pseudo, password, email, sexe);
+        this.type = type;
     }
 
     public String getType() {
@@ -27,9 +28,5 @@ public class EntityMembre extends EntityUser {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
-    
-    
 
 }

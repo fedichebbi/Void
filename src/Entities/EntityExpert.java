@@ -18,6 +18,16 @@ public class EntityExpert extends EntityUser
         
     }
 
+
+    public EntityExpert(String specialite, int id, String pseudo, String password, String email, String sexe) {
+        super(id, pseudo, password, email, sexe);
+        this.specialite = specialite;
+    }
+
+
+    
+    
+    
     public String getSpecialite() {
         return specialite;
     }
@@ -25,15 +35,5 @@ public class EntityExpert extends EntityUser
     public void setSpecialite(String specialite) {
         this.specialite = specialite;
     }
-
-    public EntityExpert(String specialite) {
-        this.specialite = specialite;
-    }
-
-    public EntityExpert(String specialite, int id, String pseudo, String password, String nom, String prenom, String email, String adresse, String date_naissance,String statut) {
-        super(id, pseudo, password, nom, prenom, email, adresse, date_naissance,statut);
-        this.specialite = specialite;
-    }
-    
     
 }

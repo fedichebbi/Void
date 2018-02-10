@@ -26,7 +26,7 @@ public class Void extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/GUIs/GUILogin.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Connectez Vous");
         stage.setScene(scene);
         stage.show();
     }
@@ -37,7 +37,9 @@ public class Void extends Application {
      */
     public static void main(String[] args) throws SQLException {
         launch(args);
-
+        ServiceUser usr=new ServiceUser();
+        //System.out.println(usr.verifLogin("admin", "admin"));
+        //usr.verifLogin("admin", "admin");
     }
     
 }

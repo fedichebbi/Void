@@ -9,6 +9,7 @@ import Config.config;
 import Entities.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -33,20 +34,16 @@ public class ServiceUser {
 
     public void ajouterUser(EntityUser user) throws SQLException {
 
-        String req = "INSERT INTO user (pseudo,password,nom,prenom,email,adresse,date_naiss,statut,type) "
-                + "values(?,?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO user (pseudo,password,type_m,email,type) "
+                + "values(?,?,?,?,?)";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
 
         preparedStatement.setString(1, user.getPseudo());
         preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setString(3, user.getNom());
-        preparedStatement.setString(4, user.getPrenom());
-        preparedStatement.setString(5, user.getEmail());
-        preparedStatement.setString(6, user.getAdresse());
-        preparedStatement.setString(7, user.getDate_naissance());
-        preparedStatement.setString(8, user.getStatut());
-        preparedStatement.setString(9, "membre");
+        preparedStatement.setString(3, "simple");
+        preparedStatement.setString(4, user.getEmail());
+        preparedStatement.setString(5, "membre");
         //preparedStatement.setString(9, user.get;
 
         preparedStatement.executeUpdate();
@@ -61,31 +58,35 @@ public class ServiceUser {
         preparedStatement.setInt(1, id);
 
         preparedStatement.executeUpdate();
-        System.out.println(req);
+        //System.out.println(req);
     }
-    
-    public void modifierUser(EntityUser user,int id) throws SQLException{
-        String req="UPDATE user SET "
+
+    public void modifierUser(EntityUser user, int id) throws SQLException {
+        String req = "UPDATE user SET "
                 + "password=?,"
-                + "nom=?,"
-                + "prenom=?,"
                 + "email=?,"
-                + "adresse=?,"
-                + "date_naiss=?,"
-                + "statut=?"
                 + "WHERE id=?";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
-        
+
         preparedStatement.setString(1, user.getPassword());
-        preparedStatement.setString(2, user.getNom());
-        preparedStatement.setString(3, user.getPrenom());
-        preparedStatement.setString(4, user.getEmail());
-        preparedStatement.setString(5, user.getAdresse());
-        preparedStatement.setString(6, user.getDate_naissance());
-        preparedStatement.setString(7, user.getStatut());
-        preparedStatement.setInt(8,id);
+        preparedStatement.setString(2, user.getEmail());
+        preparedStatement.setInt(3, id);
         System.out.println(preparedStatement);
         preparedStatement.executeUpdate();
+    }
+
+    public String verifLogin(String login, String password) throws SQLException {
+        String req = "SELECT pseudo,password,type FROM user WHERE pseudo=?";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+        preparedStatement.setString(1,login);
+        ResultSet rs = preparedStatement.executeQuery();
+        if (rs.next()) {
+            if(rs.getString(1).equals(login) && rs.getString(2).equals(password))
+                return rs.getString(3);
+        }
+        return null;
+
     }
 }

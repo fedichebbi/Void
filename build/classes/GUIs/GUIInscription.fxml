@@ -10,25 +10,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="454.0" prefWidth="364.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUIInscriptionController">
+<AnchorPane id="green" fx:id="anchorPane" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUIInscriptionController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
    <children>
-      <AnchorPane id="green" layoutX="34.0" layoutY="31.0" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <children>
-            <JFXTextField layoutX="75.0" layoutY="80.0" promptText="Pseudo" />
-            <JFXPasswordField layoutX="75.0" layoutY="132.0" promptText="Mot de passe" />
-            <JFXTextField layoutX="75.0" layoutY="187.0" promptText="Adresse Mail" />
-            <JFXComboBox layoutX="100.0" layoutY="239.0" prefHeight="25.0" prefWidth="99.0" promptText="Sexe" visibleRowCount="5" />
-            <CheckBox layoutX="4.0" layoutY="300.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="309.0" text="Cochez si vous vous inscrivez en tant que professionel" />
-            <Label layoutX="77.0" layoutY="14.0" prefHeight="39.0" prefWidth="164.0" text="Connectez Vous" textFill="#c0ff11">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <JFXButton id="green" layoutX="107.0" layoutY="346.0" prefHeight="32.0" prefWidth="85.0" text="Valider" />
-         </children>
-      </AnchorPane>
+      <JFXTextField fx:id="pseudo" layoutX="75.0" layoutY="80.0" promptText="Pseudo" />
+      <JFXPasswordField fx:id="password" layoutX="75.0" layoutY="132.0" promptText="Mot de passe" />
+      <JFXTextField fx:id="mail" layoutX="75.0" layoutY="187.0" promptText="Adresse Mail" />
+      <JFXComboBox fx:id="sexe" layoutX="100.0" layoutY="239.0" prefHeight="25.0" prefWidth="99.0" promptText="Sexe" visibleRowCount="5" />
+      <CheckBox fx:id="pro" layoutX="4.0" layoutY="300.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="309.0" text="Cochez si vous vous inscrivez en tant que professionel" />
+      <Label layoutX="77.0" layoutY="14.0" prefHeight="39.0" prefWidth="164.0" text="Inscrivez Vous" textFill="#98bf21">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <JFXButton id="green" fx:id="bt" layoutX="107.0" layoutY="346.0" onAction="#confirmerClicked" prefHeight="32.0" prefWidth="85.0" text="Valider" />
    </children>
 </AnchorPane>

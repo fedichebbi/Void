@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="740.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUILoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="364.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUILoginController">
    <children>
-      <ImageView fitHeight="455.0" fitWidth="371.0">
+      <ImageView fitHeight="455.0" fitWidth="364.0">
          <image>
             <Image url="@../ressources/images/hf.jpg" />
          </image>
@@ -21,35 +21,31 @@
             <GaussianBlur radius="17.33" />
          </effect>
       </ImageView>
-      <AnchorPane fx:id="anchorPane" layoutX="376.0" prefHeight="454.0" prefWidth="364.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane id="green" fx:id="anchorPane" layoutX="34.0" layoutY="31.0" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="31.0">
          <children>
-            <AnchorPane id="green" layoutX="34.0" layoutY="31.0" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="31.0">
-               <children>
-                  <TextField layoutX="51.0" layoutY="95.0" prefHeight="32.0" prefWidth="201.0" promptText="Username" />
-                  <PasswordField layoutX="50.0" layoutY="159.0" prefWidth="201.0" promptText="Password" />
-                  <Label layoutX="91.0" layoutY="346.0" prefHeight="17.0" prefWidth="122.0" text="Forgot you Password ?" textFill="#98bf21" underline="true" />
-                  <Label layoutX="43.0" layoutY="14.0" prefHeight="43.0" prefWidth="214.0" text="Connectez Vous" textFill="#98bf21">
-                     <font>
-                        <Font size="29.0" />
-                     </font>
-                  </Label>
-                  <JFXButton id="green" fx:id="bt1" layoutX="70.0" layoutY="224.0" onAction="#buttonclicked" prefHeight="25.0" prefWidth="164.0" text="Confirmer" />
-                  <Label layoutX="62.0" layoutY="296.0" text="Inscrivez vous ici" textFill="#98bf21">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="signup" fitHeight="32.0" fitWidth="34.0" layoutX="200.0" layoutY="293.0" onMouseClicked="#signup">
-                     <image>
-                        <Image url="@../ressources/images/6478-200.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </AnchorPane>
+            <TextField fx:id="username" layoutX="51.0" layoutY="95.0" prefHeight="32.0" prefWidth="201.0" promptText="Username" />
+            <PasswordField fx:id="password" layoutX="50.0" layoutY="159.0" prefWidth="201.0" promptText="Password" />
+            <Label layoutX="91.0" layoutY="346.0" prefHeight="17.0" prefWidth="122.0" text="Forgot you Password ?" textFill="#98bf21" underline="true" />
+            <Label layoutX="43.0" layoutY="14.0" prefHeight="43.0" prefWidth="214.0" text="Connectez Vous" textFill="#98bf21">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <JFXButton id="green" fx:id="confirmer" layoutX="70.0" layoutY="224.0" onAction="#buttonclicked" prefHeight="25.0" prefWidth="164.0" text="Confirmer" />
+            <Label layoutX="62.0" layoutY="296.0" text="Inscrivez vous ici" textFill="#98bf21">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="signup" fitHeight="32.0" fitWidth="34.0" layoutX="200.0" layoutY="293.0" onMouseClicked="#signup">
+               <image>
+                  <Image url="@../ressources/images/6478-200.png" />
+               </image>
+            </ImageView>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </AnchorPane>
    </children>
 </AnchorPane>
