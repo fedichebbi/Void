@@ -12,6 +12,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -80,13 +85,28 @@ public class ServiceUser {
         String req = "SELECT pseudo,password,type FROM user WHERE pseudo=?";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
-        preparedStatement.setString(1,login);
+        preparedStatement.setString(1, login);
         ResultSet rs = preparedStatement.executeQuery();
         if (rs.next()) {
-            if(rs.getString(1).equals(login) && rs.getString(2).equals(password))
+            if (rs.getString(1).equals(login) && rs.getString(2).equals(password)) {
                 return rs.getString(3);
+            }
         }
         return null;
 
+    }
+
+    public ObservableList<EntityUser> LoadDb() throws SQLException {
+        ObservableList<EntityUser> data =FXCollections.observableArrayList();
+        String req = "SELECT id,pseudo,password,email,sexe FROM user";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+        ResultSet rs = preparedStatement.executeQuery();
+        
+        while(rs.next())
+        {
+            data.add(new EntityUser(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5)));
+        }
+        return data;
     }
 }

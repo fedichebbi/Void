@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,20 +58,44 @@ public class GUILoginController implements Initializable {
     @FXML
     private void buttonclicked(ActionEvent event) throws Exception {
         ServiceUser su = new ServiceUser();
-        String message;
         String verif = su.verifLogin(username.getText(), password.getText());
+        System.out.println(verif);
         if ((verif == null)) {
-            message = "Verifier vos coordonnés";
-        } else {
-            message = "Vous etes un " + verif;
+            alerter("Verifier vos coordonnés");
+        } 
+        else if (verif.equals("admin"))
+        {
+            alerter("Bienvenue "+verif);
+            redirecting("Admin/GUIDashboard.fxml", "Interface Admin",event);
+        }
+        else if (verif.equals("membre"))
+        {
+            alerter("Bienvenue "+verif);
         }
         
+        
+
+        ///GUIs/Admin/GUIDashboard.fxml
+    }
+    private void alerter(String message)
+    {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText("Look, an Information Dialog");
         alert.setContentText(message);
 
         alert.showAndWait();
+    }
+    private void redirecting(String path,String title,Event event) throws Exception
+    {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setTitle(title);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void windows(String path, String title) throws Exception {

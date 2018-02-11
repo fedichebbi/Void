@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="green" fx:id="anchorPane" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUIInscriptionController">
+<AnchorPane id="green" fx:id="anchorPane" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUIInscriptionController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -20,11 +20,11 @@
       <JFXTextField fx:id="mail" layoutX="75.0" layoutY="187.0" promptText="Adresse Mail" />
       <JFXComboBox fx:id="sexe" layoutX="100.0" layoutY="239.0" prefHeight="25.0" prefWidth="99.0" promptText="Sexe" visibleRowCount="5" />
       <CheckBox fx:id="pro" layoutX="4.0" layoutY="300.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="309.0" text="Cochez si vous vous inscrivez en tant que professionel" />
-      <Label layoutX="77.0" layoutY="14.0" prefHeight="39.0" prefWidth="164.0" text="Inscrivez Vous" textFill="#98bf21">
+      <Label layoutX="87.0" layoutY="14.0" prefHeight="39.0" prefWidth="140.0" text="Inscrivez Vous" textFill="#ff5a83">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <JFXButton id="green" fx:id="bt" layoutX="107.0" layoutY="346.0" onAction="#confirmerClicked" prefHeight="32.0" prefWidth="85.0" text="Valider" />
+      <JFXButton fx:id="bt" layoutX="107.0" layoutY="346.0" onAction="#confirmerClicked" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #ff5a83;" text="Valider" />
    </children>
 </AnchorPane>

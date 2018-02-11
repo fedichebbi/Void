@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="364.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUILoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="364.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUILoginController">
    <children>
       <ImageView fitHeight="455.0" fitWidth="364.0">
          <image>
@@ -25,14 +25,14 @@
          <children>
             <TextField fx:id="username" layoutX="51.0" layoutY="95.0" prefHeight="32.0" prefWidth="201.0" promptText="Username" />
             <PasswordField fx:id="password" layoutX="50.0" layoutY="159.0" prefWidth="201.0" promptText="Password" />
-            <Label layoutX="91.0" layoutY="346.0" prefHeight="17.0" prefWidth="122.0" text="Forgot you Password ?" textFill="#98bf21" underline="true" />
-            <Label layoutX="43.0" layoutY="14.0" prefHeight="43.0" prefWidth="214.0" text="Connectez Vous" textFill="#98bf21">
+            <Label layoutX="88.0" layoutY="345.0" prefHeight="17.0" prefWidth="122.0" text="Mot de passe oublié ?" textFill="#ff5a83" underline="true" />
+            <Label layoutX="43.0" layoutY="14.0" prefHeight="43.0" prefWidth="214.0" text="Connectez Vous" textFill="#ff5a83">
                <font>
                   <Font size="29.0" />
                </font>
             </Label>
-            <JFXButton id="green" fx:id="confirmer" layoutX="70.0" layoutY="224.0" onAction="#buttonclicked" prefHeight="25.0" prefWidth="164.0" text="Confirmer" />
-            <Label layoutX="62.0" layoutY="296.0" text="Inscrivez vous ici" textFill="#98bf21">
+            <JFXButton fx:id="confirmer" layoutX="70.0" layoutY="224.0" onAction="#buttonclicked" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: #ff5a83;" text="Confirmer" textFill="WHITE" />
+            <Label layoutX="62.0" layoutY="296.0" text="Inscrivez vous ici" textFill="#ff5a83">
                <font>
                   <Font size="17.0" />
                </font>

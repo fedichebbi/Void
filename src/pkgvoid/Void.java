@@ -9,6 +9,7 @@ import Entities.EntityUser;
 import Services.*;
 import java.sql.SQLException;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -39,7 +40,7 @@ public class Void extends Application {
         launch(args);
         ServiceUser usr=new ServiceUser();
         //System.out.println(usr.verifLogin("admin", "admin"));
-        //usr.verifLogin("admin", "admin");
+        ObservableList<EntityUser>data=usr.LoadDb();
     }
     
 }
