@@ -11,22 +11,22 @@ package Entities;
  */
 public class EntityMembre extends EntityUser {
 
-    String type;
+    String type_M;
 
     public EntityMembre() {
     }
 
-    public EntityMembre(String type, int id, String pseudo, String password, String email, String sexe) {
+    public EntityMembre(String type_M, int id, String pseudo, String password, String email, String sexe) {
         super(id, pseudo, password, email, sexe);
-        this.type = type;
+        this.type_M = type_M;
     }
 
-    public String getType() {
-        return type;
+    public String getType_M() {
+        return type_M;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setType(String type_M) {
+        this.type_M = type_M;
     }
 
 }

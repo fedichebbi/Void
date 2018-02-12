@@ -39,8 +39,8 @@ public class ServiceUser {
 
     public void ajouterUser(EntityUser user) throws SQLException {
 
-        String req = "INSERT INTO user (pseudo,password,type_m,email,type) "
-                + "values(?,?,?,?,?)";
+        String req = "INSERT INTO user (pseudo,password,type_m,email,type,sexe) "
+                + "values(?,?,?,?,?,?)";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
 
@@ -49,8 +49,7 @@ public class ServiceUser {
         preparedStatement.setString(3, "simple");
         preparedStatement.setString(4, user.getEmail());
         preparedStatement.setString(5, "membre");
-        //preparedStatement.setString(9, user.get;
-
+        preparedStatement.setString(6, user.getSexe());
         preparedStatement.executeUpdate();
 
     }
@@ -63,7 +62,7 @@ public class ServiceUser {
         preparedStatement.setInt(1, id);
 
         preparedStatement.executeUpdate();
-        //System.out.println(req);
+
     }
 
     public void modifierUser(EntityUser user, int id) throws SQLException {
@@ -98,14 +97,17 @@ public class ServiceUser {
 
     public ObservableList<EntityUser> LoadDb() throws SQLException {
         ObservableList<EntityUser> data =FXCollections.observableArrayList();
-        String req = "SELECT id,pseudo,password,email,sexe FROM user";
+        String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
         ResultSet rs = preparedStatement.executeQuery();
         
         while(rs.next())
         {
-            data.add(new EntityUser(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(5)));
+            if(rs.getString(7).equals("admin"))
+            data.add(new EntityAdmin(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(8)));
+            else if (rs.getString(7).equals("membre"))
+            data.add(new EntityMembre(rs.getString(5),rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8)));
         }
         return data;
     }

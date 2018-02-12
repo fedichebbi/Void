@@ -14,8 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -45,6 +47,8 @@ public class GUIProfilesController implements Initializable {
     private TableView<Entities.EntityUser> ProfileList;
     
     ObservableList<EntityUser> data;
+    @FXML
+    private Button deleteButton;
     /**
      * Initializes the controller class.
      */
@@ -58,6 +62,7 @@ public class GUIProfilesController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(data);
         ProfileList.setItems(data);
         setCellTable();
         
@@ -73,5 +78,15 @@ public class GUIProfilesController implements Initializable {
         columnSexe.setCellValueFactory(new PropertyValueFactory<>("sexe")); 
         columnSpecialite.setCellValueFactory(new PropertyValueFactory<>("specialite"));
         
+    }
+
+    @FXML
+    private void deleteProfile(ActionEvent event) throws SQLException {
+        EntityUser entity = ProfileList.getSelectionModel().getSelectedItem();
+        ServiceUser usr=new ServiceUser();
+        //Session.iactualiteService.deletebynamedate(act.getNom_event(), act.getDate_event());
+        usr.supprimerUser(entity.getId());
+        int selectedIndex = ProfileList.getSelectionModel().getSelectedIndex();
+        ProfileList.getItems().remove(selectedIndex);
     }
 }

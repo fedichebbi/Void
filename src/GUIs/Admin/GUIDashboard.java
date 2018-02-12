@@ -58,7 +58,7 @@ public class GUIDashboard implements Initializable {
              profiles = FXMLLoader.load(getClass().getResource("GUIProfiles.fxml"));
              //widgets = FXMLLoader.load(getClass().getResource("Widgets.fxml"));
              //controls = FXMLLoader.load(getClass().getResource("Controls.fxml"));
-            setNode(profiles);
+            //setNode(profiles);
         } catch (IOException ex) {
             Logger.getLogger(GUIDashboard.class.getName()).log(Level.SEVERE, null, ex);
         }

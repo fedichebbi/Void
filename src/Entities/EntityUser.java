@@ -68,6 +68,11 @@ public class EntityUser {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getSexe() {
+        return sexe;
+    }
+    
     
     
    
