@@ -24,10 +24,12 @@ public class Void extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+    
+        //Parent root=FXMLLoader.load(getClass().getResource("GUIAjouterArticle.fxml"));
+       // Parent root=FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+       Parent root=FXMLLoader.load(getClass().getResource("GUIAfficherArticle.fxml"));
         Scene scene = new Scene(root);
-        
+        scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -37,7 +39,7 @@ public class Void extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        Date d=new Date(2017, 12, 12);
+        /*Date d=new Date(2017, 12, 12);
         System.out.println(d);
         Article a=new Article(1, "grosesse", "aa", "aaa", 1, d);
         Article a4=new Article(4, "maman", "aa", "aaa", 1, d);
@@ -66,7 +68,7 @@ public class Void extends Application {
          //ce.supprimerConseil(3);
          System.out.println("test de methode recherchebyID "+ce.rchercheByID(2));
          System.out.println("test de methode recherchebyTitre "+ce.rchercheByTitre("allaitement"));
-         System.out.println("test de methode getAll()  "+ce.getAll());
+         System.out.println("test de methode getAll()  "+ce.getAll());*/
          
     }
     

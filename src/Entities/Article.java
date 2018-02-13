@@ -6,6 +6,8 @@
 package Entities;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,6 +20,7 @@ public class Article {
     private String contenue;
     private int note;
     private Date date_creation;
+    private List<Article>articles;
 
     public Article(int id, String categorie, String titre, String contenue, int note, Date date_creation) {
         this.id = id;
@@ -26,6 +29,18 @@ public class Article {
         this.contenue = contenue;
         this.note = note;
         this.date_creation = date_creation;
+    }
+//
+    public Article(String categorie, String titre, String contenue, int note, Date date_creation) {
+        this.categorie = categorie;
+        this.titre = titre;
+        this.contenue = contenue;
+        this.note = note;
+        this.date_creation = date_creation;
+    }
+
+    public Article(List<Article> list) {
+        list=new ArrayList<>(); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

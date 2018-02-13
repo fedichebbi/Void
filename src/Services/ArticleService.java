@@ -13,6 +13,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import Entities.Article;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import techniques.DataSource;
 
 /**
@@ -137,6 +141,28 @@ public class ArticleService {
             System.out.println(ex);
         }
         return articles;
+    }
+     
+      public ObservableList<Article> displayallarticle() {
+        ObservableList<Article> listearticle = FXCollections.observableArrayList();
+        String req = "select * from acticle ";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = conn.prepareStatement(req);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Article a = new Article(resultSet.getInt(1), resultSet.getString("categorie"), resultSet.getString(3), resultSet.getString(4), resultSet.getInt(5), resultSet.getDate(6));
+                System.out.println(a);
+                listearticle.add(a);
+                
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ArticleService.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+        return listearticle;
     }
     
     

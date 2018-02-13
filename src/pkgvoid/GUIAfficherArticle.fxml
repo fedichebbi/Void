@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="429.0" prefWidth="906.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="pkgvoid.GUIAfficherArticleController">
+   <children>
+      <TableView fx:id="tableView_C" layoutX="5.0" layoutY="106.0" onMouseClicked="#afficher" prefHeight="249.0" prefWidth="856.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
+          <TableColumn fx:id="categorie" prefWidth="109.0" text="Categorie" />
+            <TableColumn fx:id="titre" prefWidth="97.0" text="Titre" />
+            <TableColumn fx:id="contenue" prefWidth="220.0" text="Contenue" />
+            <TableColumn fx:id="note" minWidth="0.0" prefWidth="0.0" text="Note" />
+            <TableColumn fx:id="date_creation" prefWidth="202.0" text="Date de création" />
+            <TableColumn fx:id="note" prefWidth="75.0" text="note" />
+        </columns>
+      </TableView>
+      <TextField fx:id="rechercheText" layoutX="627.0" layoutY="30.0" />
+      <Label layoutX="566.0" layoutY="34.0" text="Recherche" />
+      <Button fx:id="ajouter_btn" layoutX="242.0" layoutY="368.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Ajouter" />
+      <Button fx:id="modifier_btn" layoutX="381.0" layoutY="368.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Button fx:id="supprimer_btn" layoutX="508.0" layoutY="368.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+   </children>
+</AnchorPane>
