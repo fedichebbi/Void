@@ -17,6 +17,10 @@ public class EntityAdmin extends EntityUser{
     public EntityAdmin(int id, String pseudo, String password, String email, String sexe) {
         super(id, pseudo, password, email, sexe);
     }
+
+    public EntityAdmin(String pseudo, String password, String email) {
+        super(pseudo, password, email);
+    }
     
     
     

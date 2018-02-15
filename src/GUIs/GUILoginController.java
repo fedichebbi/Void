@@ -8,6 +8,7 @@ package GUIs;
 import Entities.EntityUser;
 import Services.ServiceUser;
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,14 +21,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 
 /**
  * FXML Controller class
@@ -35,17 +35,17 @@ import javafx.stage.Stage;
  * @author Fedi
  */
 public class GUILoginController implements Initializable {
-
+    
     @FXML
     private AnchorPane anchorPane;
-    @FXML
-    private ImageView signup;
-    @FXML
-    private JFXButton confirmer;
     @FXML
     private TextField username;
     @FXML
     private PasswordField password;
+    @FXML
+    private JFXButton confirmer;
+    @FXML
+    private ImageView signup;
 
     /**
      * Initializes the controller class.
@@ -54,40 +54,34 @@ public class GUILoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
     @FXML
     private void buttonclicked(ActionEvent event) throws Exception {
         ServiceUser su = new ServiceUser();
         String verif = su.verifLogin(username.getText(), password.getText());
-        System.out.println(verif);
+        EntityUser usr = su.getUser(username.getText());
+        
         if ((verif == null)) {
             alerter("Verifier vos coordonnés");
-        } 
-        else if (verif.equals("admin"))
-        {
-            alerter("Bienvenue "+verif);
-            redirecting("Admin/GUIDashboard.fxml", "Interface Admin",event);
+        } else if (verif.equals("admin")) {
+            alerter("Bienvenue " + verif);
+            redirecting("Admin/GUIDashboard.fxml", "Interface Admin", event);
+        } else if (verif.equals("membre")) {
+            redirectMember("Membre/GUIMembre.fxml", event, usr);
         }
-        else if (verif.equals("membre"))
-        {
-            alerter("Bienvenue "+verif);
-        }
-        
-        
 
         ///GUIs/Admin/GUIDashboard.fxml
     }
-    private void alerter(String message)
-    {
+    
+    private void alerter(String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
-        alert.setHeaderText("Look, an Information Dialog");
         alert.setContentText(message);
-
+        
         alert.showAndWait();
     }
-    private void redirecting(String path,String title,Event event) throws Exception
-    {
+    
+    private void redirecting(String path, String title, Event event) throws Exception {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         
         Parent root = FXMLLoader.load(getClass().getResource(path));
@@ -97,9 +91,9 @@ public class GUILoginController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+    
     private void windows(String path, String title) throws Exception {
-
+        
         AnchorPane pane = FXMLLoader.load(getClass().getResource(path));
         anchorPane.getChildren().setAll(pane);
         /*Parent root = FXMLLoader.load(getClass().getResource(path));
@@ -110,10 +104,22 @@ public class GUILoginController implements Initializable {
         stage.setScene(scene);
         stage.show();*/
     }
-
+    
     @FXML
     private void signup(MouseEvent event) throws Exception {
         windows("GUIInscription.fxml", "Inscrivez Vous !");
     }
-
+    
+    private void redirectMember(String path, Event event, EntityUser usr) throws IOException {
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = (Parent) loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        GUIs.Membre.GUIMembreController controller = loader.getController();
+        controller.getUser(usr);
+        stage.show();
+    }
+    
 }

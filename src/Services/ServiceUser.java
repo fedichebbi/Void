@@ -39,17 +39,37 @@ public class ServiceUser {
 
     public void ajouterUser(EntityUser user) throws SQLException {
 
-        String req = "INSERT INTO user (pseudo,password,type_m,email,type,sexe) "
-                + "values(?,?,?,?,?,?)";
+        String req = "INSERT INTO user (pseudo,password,type_m,email,type,sexe,specialite) "
+                + "values(?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
 
         preparedStatement.setString(1, user.getPseudo());
         preparedStatement.setString(2, user.getPassword());
-        preparedStatement.setString(3, "simple");
+        if(user instanceof EntityMembre)
+        preparedStatement.setString(3, ((EntityMembre) user).getType_M());
+        else preparedStatement.setString(3,"");
         preparedStatement.setString(4, user.getEmail());
         preparedStatement.setString(5, "membre");
         preparedStatement.setString(6, user.getSexe());
+        if (user instanceof EntityExpert)
+            preparedStatement.setString(7,((EntityExpert) user).getSpecialite());
+        else preparedStatement.setString(7,"");
+        preparedStatement.executeUpdate();
+
+    }
+    
+        public void ajouterAdmin(EntityUser user) throws SQLException {
+
+        String req = "INSERT INTO user (pseudo,password,email,type) "
+                + "values(?,?,?,?)";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+
+        preparedStatement.setString(1, user.getPseudo());
+        preparedStatement.setString(2, user.getPassword());
+        preparedStatement.setString(3, user.getEmail());
+        preparedStatement.setString(4, "admin");
         preparedStatement.executeUpdate();
 
     }
@@ -69,13 +89,15 @@ public class ServiceUser {
         String req = "UPDATE user SET "
                 + "password=?,"
                 + "email=?,"
+                + "pseudo=?"
                 + "WHERE id=?";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
 
         preparedStatement.setString(1, user.getPassword());
         preparedStatement.setString(2, user.getEmail());
-        preparedStatement.setInt(3, id);
+        preparedStatement.setString(3, user.getPseudo());
+        preparedStatement.setInt(4, id);
         System.out.println(preparedStatement);
         preparedStatement.executeUpdate();
     }
@@ -111,4 +133,38 @@ public class ServiceUser {
         }
         return data;
     }
+    
+    public EntityUser getUser(String name) throws SQLException
+    {
+        String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user WHERE pseudo=?";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+        preparedStatement.setString(1, name);
+        ResultSet rs = preparedStatement.executeQuery();
+        EntityUser usr = null;
+        if(rs.next())
+        {
+         usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
+        }
+        
+        return usr;
+    }
+    
+        public EntityUser getUserById(String name) throws SQLException
+    {
+        String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user WHERE pseudo=?";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+        preparedStatement.setString(1, name);
+        ResultSet rs = preparedStatement.executeQuery();
+        EntityUser usr = null;
+        if(rs.next())
+        {
+         usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
+        }
+        
+        return usr;
+    }
+    
+    
 }

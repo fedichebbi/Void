@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="green" fx:id="anchorPane" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUIInscriptionController">
+<AnchorPane id="green" fx:id="anchorPane" prefHeight="392.0" prefWidth="297.0" style="-fx-background-color: FFFFFF;" stylesheets="@../ressources/css/button_style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.GUIInscriptionController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
@@ -26,5 +26,9 @@
          </font>
       </Label>
       <JFXButton fx:id="bt" layoutX="107.0" layoutY="346.0" onAction="#confirmerClicked" prefHeight="32.0" prefWidth="85.0" style="-fx-background-color: #ff5a83;" text="Valider" />
+      <Label fx:id="erreurPseudo" layoutX="86.0" layoutY="111.0" textFill="RED" />
+      <Label fx:id="erreurPass" layoutX="86.0" layoutY="163.0" textFill="RED" />
+      <Label fx:id="erreurMail" layoutX="86.0" layoutY="218.0" textFill="RED" />
+      <Label fx:id="erreurSexe" layoutX="100.0" layoutY="271.0" textFill="RED" />
    </children>
 </AnchorPane>

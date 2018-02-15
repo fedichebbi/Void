@@ -27,6 +27,13 @@ public class EntityUser {
         this.email = email;
         this.sexe = sexe;
     }
+
+    public EntityUser(String pseudo, String password, String email) {
+        this.pseudo = pseudo;
+        this.password = password;
+        this.email = email;
+    }
+    
     
     
     public EntityUser(int id, String pseudo, String password, String email, String sexe) {

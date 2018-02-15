@@ -25,6 +25,14 @@ public class EntityExpert extends EntityUser
     }
 
 
+    public EntityExpert(String pseudo, String password, String email, String sexe,String specialite) {
+        super(pseudo, password, email, sexe);
+        this.specialite = specialite;
+    }
+    
+    
+
+
     
     
     

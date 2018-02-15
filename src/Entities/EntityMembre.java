@@ -21,6 +21,11 @@ public class EntityMembre extends EntityUser {
         this.type_M = type_M;
     }
 
+    public EntityMembre(String pseudo, String password, String email, String sexe, String type_M) {
+        super(pseudo, password, email, sexe);
+        this.type_M=type_M;
+    }
+
     public String getType_M() {
         return type_M;
     }

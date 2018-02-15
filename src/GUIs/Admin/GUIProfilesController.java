@@ -5,8 +5,11 @@
  */
 package GUIs.Admin;
 
+import Entities.EntityAdmin;
 import Entities.EntityUser;
 import Services.ServiceUser;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -21,6 +24,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -45,48 +51,107 @@ public class GUIProfilesController implements Initializable {
     private TableColumn<?, ?> columnSpecialite;
     @FXML
     private TableView<Entities.EntityUser> ProfileList;
-    
+
     ObservableList<EntityUser> data;
     @FXML
     private Button deleteButton;
+    @FXML
+    private JFXTextField pseudo;
+    @FXML
+    private JFXPasswordField password;
+    @FXML
+    private JFXTextField email;
+    @FXML
+    private Button ajouter;
+    @FXML
+    private JFXTextField modifpseudo;
+    @FXML
+    private JFXPasswordField modifPass;
+    @FXML
+    private JFXTextField modifMail;
+    @FXML
+    private Button modifier;
+    @FXML
+    private JFXTextField modifId;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Services.ServiceUser usr=new ServiceUser();
-        
-        data =FXCollections.observableArrayList();
+        Services.ServiceUser usr = new ServiceUser();
+
+        data = FXCollections.observableArrayList();
         try {
-            data= usr.LoadDb();
+            data = usr.LoadDb();
         } catch (SQLException ex) {
             Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(data);
         ProfileList.setItems(data);
         setCellTable();
-        
-    }    
-    
-    private void setCellTable()
-    {
+
+    }
+
+    private void setCellTable() {
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnPseudo.setCellValueFactory(new PropertyValueFactory<>("pseudo"));
         columnEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         columnType.setCellValueFactory(new PropertyValueFactory<>("type"));
         columnType_M.setCellValueFactory(new PropertyValueFactory<>("type_M"));
-        columnSexe.setCellValueFactory(new PropertyValueFactory<>("sexe")); 
+        columnSexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         columnSpecialite.setCellValueFactory(new PropertyValueFactory<>("specialite"));
-        
+
     }
 
     @FXML
     private void deleteProfile(ActionEvent event) throws SQLException {
         EntityUser entity = ProfileList.getSelectionModel().getSelectedItem();
-        ServiceUser usr=new ServiceUser();
+        ServiceUser usr = new ServiceUser();
         //Session.iactualiteService.deletebynamedate(act.getNom_event(), act.getDate_event());
         usr.supprimerUser(entity.getId());
         int selectedIndex = ProfileList.getSelectionModel().getSelectedIndex();
         ProfileList.getItems().remove(selectedIndex);
     }
+
+    @FXML
+    private void ajouterAdmin(ActionEvent event) throws SQLException {
+        ServiceUser usr = new ServiceUser();
+        EntityAdmin admin = new EntityAdmin(pseudo.getText(), password.getText(), email.getText());
+        usr.ajouterAdmin(admin);
+        data = usr.LoadDb();
+        ProfileList.setItems(data);
+    }
+
+    @FXML
+    private void modifierProfile(ActionEvent event){
+        EntityUser entity = ProfileList.getSelectionModel().getSelectedItem();
+        entity.setPseudo(modifpseudo.getText());
+        if(modifPass.getText().equals(""))
+        entity.setPassword(entity.getPassword());
+        else entity.setPassword(modifPass.getText());
+        entity.setEmail(modifMail.getText());
+        ServiceUser usr=new ServiceUser();
+        try {
+            usr.modifierUser(entity, entity.getId());
+        } catch (SQLException ex) {
+            //Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            data = usr.LoadDb();
+        } catch (SQLException ex) {
+            //Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ProfileList.setItems(data);
+    }
+
+    @FXML
+    private void remplirModification(MouseEvent event) {
+        EntityUser entity = ProfileList.getSelectionModel().getSelectedItem();
+        modifId.setText(String.valueOf(entity.getId()));
+        modifId.setEditable(false);
+        modifpseudo.setText(entity.getPseudo());
+        modifMail.setText(entity.getEmail());
+        modifPass.setText(entity.getPassword());
+    }
+
 }
