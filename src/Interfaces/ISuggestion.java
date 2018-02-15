@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Interfaces;
 
 /**
  *
- * @author Fedi
+ * @author benka
  */
-public class EntityUser {
-   
-   protected int id_user; 
-   
+public class ISuggestion {
+    
 }

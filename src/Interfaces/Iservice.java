@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package Interfaces;
+
+import Entities.EntityBabySitter;
+import java.util.List;
 
 /**
  *
- * @author Fedi
+ * @author benka
  */
-public class EntityUser {
-   
-   protected int id_user; 
-   
+public interface Iservice <T,R> {
+     List<T> getAll();
+    
 }

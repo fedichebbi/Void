@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="754.0" prefWidth="1117.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgvoid.BabySitterAddController">
+    <stylesheets>
+        <URL value="@babysitteradd.css" />
+    </stylesheets>
+   <children>
+      <ImageView fitHeight="777.0" fitWidth="1117.0" layoutY="9.0" opacity="0.52" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="112.0" layoutY="252.0" text="Horaire" textFill="#cc2dc5">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Label layoutX="129.0" layoutY="306.0" text="lieux" textFill="#a21dae">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Label layoutX="125.0" layoutY="362.0" text="Salaire" textFill="#b523b8">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Label layoutX="52.0" layoutY="418.0" text="Num telephone" textFill="#b528a6">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Label layoutX="76.0" layoutY="490.0" text="Description" textFill="#b116bc">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <Button layoutX="484.0" layoutY="618.0" mnemonicParsing="false" onAction="#AddBabySitter" opacity="0.7" prefHeight="65.0" prefWidth="164.0" text="Ajouter " textFill="#a81005">
+         <font>
+            <Font size="25.0" />
+         </font></Button>
+      <TextField fx:id="id_horaire" layoutX="204.0" layoutY="247.0" opacity="0.71" />
+      <TextField fx:id="id_lieux" layoutX="204.0" layoutY="301.0" opacity="0.71" />
+      <TextField fx:id="id_salaire" layoutX="204.0" layoutY="357.0" opacity="0.71" />
+      <TextField fx:id="id_num" layoutX="204.0" layoutY="418.0" opacity="0.7" />
+      <TextArea fx:id="id_desc" layoutX="197.0" layoutY="490.0" opacity="0.71" prefHeight="200.0" prefWidth="200.0" />
+      <Label layoutX="38.0" layoutY="207.0" text="Date disponibilité" textFill="#cc2cc6">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <JFXDatePicker fx:id="date" layoutX="200.0" layoutY="190.0" prefHeight="31.0" prefWidth="200.0" />
+      <Label layoutX="72.0" layoutY="54.0" text="Bienvenue BabySitter" textFill="#0bb0c3">
+         <font>
+            <Font size="49.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
