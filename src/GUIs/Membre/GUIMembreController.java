@@ -6,8 +6,10 @@
 package GUIs.Membre;
 
 import Entities.EntityUser;
+import Services.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,41 +22,39 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-import static jdk.nashorn.internal.objects.ArrayBufferView.length;
 
 /**
  * FXML Controller class
  *
  * @author Fedi
  */
-public class GUIMembreController {
+public class GUIMembreController implements Initializable {
 
     @FXML
     private Label membre;
-
-    private EntityUser usr = new EntityUser();
     @FXML
     private AnchorPane holderPane;
 
+    EntityUser user = new EntityUser();
+    
+    public String pseudo;
+
     /**
      * Initializes the controller class.
-     * @param url
-     * @param rb
      */
-    
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //ServiceUser su=new ServiceUser();
+        //user=su.getUser(pseudo);
+        System.out.println(pseudo);
     }
-    
-    public void getUser(EntityUser user)
-    {
+
+    public void getUser(EntityUser user) {
         membre.setText(user.getPseudo());
-        usr=new EntityUser(user.getId(), user.getPseudo(),user.getPassword(),user.getEmail(),user.getSexe());
     }
-    
-    public EntityUser User()
-    {
-        return usr;
+
+    public EntityUser User(){
+        return user;
     }
 
     private void setNode(Node node) {
@@ -76,7 +76,5 @@ public class GUIMembreController {
         AnchorPane forum = FXMLLoader.load(getClass().getResource("GUIForum.fxml"));
         setNode(forum);
     }
-    
-
 
 }

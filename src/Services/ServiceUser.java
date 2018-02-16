@@ -46,20 +46,26 @@ public class ServiceUser {
 
         preparedStatement.setString(1, user.getPseudo());
         preparedStatement.setString(2, user.getPassword());
-        if(user instanceof EntityMembre)
-        preparedStatement.setString(3, ((EntityMembre) user).getType_M());
-        else preparedStatement.setString(3,"");
+        if (user instanceof EntityMembre) {
+            preparedStatement.setString(3, ((EntityMembre) user).getType_M());
+            preparedStatement.setString(5, "membre");
+        } else {
+            preparedStatement.setString(3, "");
+        }
         preparedStatement.setString(4, user.getEmail());
-        preparedStatement.setString(5, "membre");
+
         preparedStatement.setString(6, user.getSexe());
-        if (user instanceof EntityExpert)
-            preparedStatement.setString(7,((EntityExpert) user).getSpecialite());
-        else preparedStatement.setString(7,"");
+        if (user instanceof EntityExpert) {
+            preparedStatement.setString(7, ((EntityExpert) user).getSpecialite());
+            preparedStatement.setString(5, "expert");
+        } else {
+            preparedStatement.setString(7, "");
+        }
         preparedStatement.executeUpdate();
 
     }
-    
-        public void ajouterAdmin(EntityUser user) throws SQLException {
+
+    public void ajouterAdmin(EntityUser user) throws SQLException {
 
         String req = "INSERT INTO user (pseudo,password,email,type) "
                 + "values(?,?,?,?)";
@@ -98,7 +104,7 @@ public class ServiceUser {
         preparedStatement.setString(2, user.getEmail());
         preparedStatement.setString(3, user.getPseudo());
         preparedStatement.setInt(4, id);
-        System.out.println(preparedStatement);
+        //System.out.println(preparedStatement);
         preparedStatement.executeUpdate();
     }
 
@@ -118,53 +124,51 @@ public class ServiceUser {
     }
 
     public ObservableList<EntityUser> LoadDb() throws SQLException {
-        ObservableList<EntityUser> data =FXCollections.observableArrayList();
+        ObservableList<EntityUser> data = FXCollections.observableArrayList();
         String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
         ResultSet rs = preparedStatement.executeQuery();
-        
-        while(rs.next())
-        {
-            if(rs.getString(7).equals("admin"))
-            data.add(new EntityAdmin(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getString(8)));
-            else if (rs.getString(7).equals("membre"))
-            data.add(new EntityMembre(rs.getString(5),rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8)));
+
+        while (rs.next()) {
+            if (rs.getString(7).equals("admin")) {
+                data.add(new EntityAdmin(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8)));
+            } else if (rs.getString(7).equals("membre")) {
+                data.add(new EntityMembre(rs.getString(5), rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8)));
+            }
+            else if(rs.getString(7).equals("expert")){
+                data.add(new EntityExpert(rs.getString(6),rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8)));
+            }
         }
         return data;
     }
-    
-    public EntityUser getUser(String name) throws SQLException
-    {
+
+    public EntityUser getUser(String name) throws SQLException {
         String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user WHERE pseudo=?";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
         preparedStatement.setString(1, name);
         ResultSet rs = preparedStatement.executeQuery();
         EntityUser usr = null;
-        if(rs.next())
-        {
-         usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
+        if (rs.next()) {
+            usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
         }
-        
+
         return usr;
     }
-    
-        public EntityUser getUserById(String name) throws SQLException
-    {
-        String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user WHERE pseudo=?";
+
+    public EntityUser getUserById(int id) throws SQLException {
+        String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user WHERE id=?";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
-        preparedStatement.setString(1, name);
+        preparedStatement.setInt(1, id);
         ResultSet rs = preparedStatement.executeQuery();
         EntityUser usr = null;
-        if(rs.next())
-        {
-         usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
+        if (rs.next()) {
+            usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
         }
-        
+
         return usr;
     }
-    
-    
+
 }

@@ -16,8 +16,8 @@
           <TableColumn fx:id="columnId" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="columnPseudo" prefWidth="75.0" text="Pseudo" />
             <TableColumn fx:id="columnEmail" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="columnType" prefWidth="104.0" text="Type du profile" />
-            <TableColumn fx:id="columnType_M" prefWidth="91.0" text="Type membre" />
+            <TableColumn fx:id="columnType" minWidth="0.0" prefWidth="5.0" text="Type du profile" />
+            <TableColumn fx:id="columnType_M" prefWidth="190.0" text="Type membre" />
             <TableColumn fx:id="columnSexe" prefWidth="75.0" text="Sexe" />
             <TableColumn fx:id="columnSpecialite" prefWidth="75.0" text="Specialite" />
         </columns>

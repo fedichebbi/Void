@@ -134,12 +134,12 @@ public class GUIProfilesController implements Initializable {
         try {
             usr.modifierUser(entity, entity.getId());
         } catch (SQLException ex) {
-            //Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
             data = usr.LoadDb();
         } catch (SQLException ex) {
-            //Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GUIProfilesController.class.getName()).log(Level.SEVERE, null, ex);
         }
         ProfileList.setItems(data);
     }

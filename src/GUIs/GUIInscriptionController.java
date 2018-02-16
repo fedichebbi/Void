@@ -13,6 +13,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import static java.lang.System.in;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -91,12 +92,12 @@ public class GUIInscriptionController implements Initializable {
             erreurPseudo.setText("Insérer un pseudo");
             test = false;
         }
-        if (password.getText().equals("")) {
+        if (!verifPassword(password.getText())) {
             erreurPass.setText("Insérer un mot de passe");
             test = false;
         }
 
-        System.out.println(verifMail(mail.getText()));
+        //System.out.println(verifMail(mail.getText()));
         if (!verifMail(mail.getText())) {
         erreurMail.setText("Veuillez saisir un email correcte");
         test=false;
@@ -140,6 +141,30 @@ public class GUIInscriptionController implements Initializable {
         }
 
         return valide;
+    }
+    
+    public boolean verifPassword(String password)
+    {
+        boolean test=false;
+        boolean test2=false;
+        int i;
+        for (i=0;i<password.length();i++)
+        {
+            if(Character.isDigit(password.charAt(i)))
+            {
+                test=true;
+                i=password.length();
+                System.out.println("test 1 :" +test);
+            }
+        }
+        if(password.length()>8)
+        {
+            test2=true;
+            System.out.println(test2);
+        }
+        if (test==test2)
+          return test;
+        return false;
     }
 
 }
