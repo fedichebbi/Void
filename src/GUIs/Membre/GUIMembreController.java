@@ -7,6 +7,7 @@ package GUIs.Membre;
 
 import Entities.EntityUser;
 import Services.ServiceUser;
+//import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -15,12 +16,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -36,8 +41,8 @@ public class GUIMembreController implements Initializable {
     private AnchorPane holderPane;
 
     EntityUser user = new EntityUser();
-    
-    public String pseudo;
+
+    int id;
 
     /**
      * Initializes the controller class.
@@ -46,15 +51,23 @@ public class GUIMembreController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //ServiceUser su=new ServiceUser();
         //user=su.getUser(pseudo);
-        System.out.println(pseudo);
+        //System.out.println(this.id);
     }
 
     public void getUser(EntityUser user) {
         membre.setText(user.getPseudo());
+        setId(user.getId());
+        //System.out.println(getId());
     }
 
-    public EntityUser User(){
-        return user;
+    public void setId(int id)
+    {
+        this.id=id;
+    }
+    
+    public int getId()
+    {
+        return this.id;
     }
 
     private void setNode(Node node) {
@@ -72,9 +85,12 @@ public class GUIMembreController implements Initializable {
 
     @FXML
     private void switchForum(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("GUIForum.fxml"));
+        Parent root = (Parent) loader.load();
+            setNode(root);
+        GUIForumController controller = loader.getController();
+        controller.setId(id);
 
-        AnchorPane forum = FXMLLoader.load(getClass().getResource("GUIForum.fxml"));
-        setNode(forum);
     }
 
 }

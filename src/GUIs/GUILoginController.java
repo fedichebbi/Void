@@ -119,7 +119,6 @@ public class GUILoginController implements Initializable {
         stage.setScene(scene);
         GUIs.Membre.GUIMembreController controller = loader.getController();
         controller.getUser(usr);
-        controller.pseudo=usr.getPseudo();
         stage.show();
     }
     

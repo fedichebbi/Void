@@ -15,7 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -36,6 +38,8 @@ public class GUIForumController implements Initializable {
     private TableColumn<?, ?> columnTopic;
     @FXML
     private TableColumn<?, ?> columnPar;
+    
+    int id;
 
     /**
      * Initializes the controller class.
@@ -51,13 +55,24 @@ public class GUIForumController implements Initializable {
         }
         TopicList.setItems(data);
         setCellTable();
-        GUIMembreController controller=new GUIMembreController();
-        System.out.println(controller.User().getId());
+        
     }
-
+    
+    public void setId(int id){
+        this.id=id;
+        //System.out.println(this.id);
+    }
+    
     private void setCellTable() {
         columnTopic.setCellValueFactory(new PropertyValueFactory<>("titre"));
         columnPar.setCellValueFactory(new PropertyValueFactory<>("id_user"));
 
     }
+
+    @FXML
+    private void addTopic(ActionEvent event) {
+        System.out.println(this.id);
+    }
+    
+    
 }

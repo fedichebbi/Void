@@ -5,14 +5,14 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="443.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.Membre.GUIForumController">
+<AnchorPane id="AnchorPane" prefHeight="418.0" prefWidth="795.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUIs.Membre.GUIForumController">
    <children>
-      <TableView fx:id="TopicList" layoutX="57.0" layoutY="114.0" prefHeight="282.0" prefWidth="346.0">
+      <TableView fx:id="TopicList" layoutX="171.0" layoutY="56.0" prefHeight="282.0" prefWidth="346.0">
         <columns>
           <TableColumn fx:id="columnTopic" prefWidth="241.0" text="Topic" />
           <TableColumn fx:id="columnPar" prefWidth="104.0" text="Par" />
         </columns>
       </TableView>
-      <JFXButton layoutX="103.0" layoutY="437.0" style="-fx-background-color: #cc3399;" text="Ajouter" textFill="WHITE" />
+      <JFXButton layoutX="333.0" layoutY="383.0" onAction="#addTopic" style="-fx-background-color: #cc3399;" text="Ajouter" textFill="WHITE" />
    </children>
 </AnchorPane>

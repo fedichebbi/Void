@@ -154,13 +154,13 @@ public class GUIInscriptionController implements Initializable {
             {
                 test=true;
                 i=password.length();
-                System.out.println("test 1 :" +test);
+                //System.out.println("test 1 :" +test);
             }
         }
-        if(password.length()>8)
+        if(password.length()>5)
         {
             test2=true;
-            System.out.println(test2);
+            //System.out.println(test2);
         }
         if (test==test2)
           return test;
