@@ -170,5 +170,26 @@ public class ServiceUser {
 
         return usr;
     }
+        public EntityUser getUserByMail(String email) throws SQLException {
+        String req = "SELECT id,pseudo,password,email,type_M,specialite,type,sexe FROM user WHERE email=?";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+        preparedStatement.setString(1, email);
+        ResultSet rs = preparedStatement.executeQuery();
+        EntityUser usr = null;
+        if (rs.next()) {
+            usr = new EntityUser(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(8));
+        }
+        return usr;
+    }
+        
+       public void addCode(String code,int id) throws SQLException{
+        String req = "REPLACE INTO codepassword (code,id_user) VALUES (?,?)";
+        PreparedStatement preparedStatement;
+        preparedStatement = con.prepareStatement(req);
+        preparedStatement.setString(1, code);
+        preparedStatement.setInt(2, id);
+        ResultSet rs = preparedStatement.executeQuery();
+       }
 
 }

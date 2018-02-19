@@ -35,16 +35,15 @@ public class ServiceTopic {
     }
 
     public void ajouterTopic(EntityTopic topic) throws SQLException {
-        String req = "INSERT INTO topic (id,titre,type,contenu,id_user) VALUES"
-                + "(?,?,?,?,?)";
+        String req = "INSERT INTO topic (titre,type,contenu,id_user) VALUES"
+                + "(?,?,?,?)";
         PreparedStatement preparedStatement;
         preparedStatement = con.prepareStatement(req);
 
-        preparedStatement.setInt(1, topic.getId());
-        preparedStatement.setString(2, topic.getTitre());
-        preparedStatement.setString(3, topic.getType());
-        preparedStatement.setString(4, topic.getContenu());
-        preparedStatement.setInt(5, topic.getId_user());
+        preparedStatement.setString(1, topic.getTitre());
+        preparedStatement.setString(2, topic.getType());
+        preparedStatement.setString(3, topic.getContenu());
+        preparedStatement.setInt(4, topic.getId_user());
         preparedStatement.executeUpdate();
     }
 

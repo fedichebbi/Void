@@ -40,10 +40,7 @@ public class GUIMembreController implements Initializable {
     @FXML
     private AnchorPane holderPane;
 
-    EntityUser user = new EntityUser();
-
-    int id;
-
+    static EntityUser user = null;
     /**
      * Initializes the controller class.
      */
@@ -56,19 +53,16 @@ public class GUIMembreController implements Initializable {
 
     public void getUser(EntityUser user) {
         membre.setText(user.getPseudo());
-        setId(user.getId());
+        setUser(user);
         //System.out.println(getId());
     }
 
-    public void setId(int id)
+    public void setUser(EntityUser user)
     {
-        this.id=id;
+        this.user=user;
+        System.out.println(this.user.getId());
     }
     
-    public int getId()
-    {
-        return this.id;
-    }
 
     private void setNode(Node node) {
         holderPane.getChildren().clear();
@@ -87,9 +81,7 @@ public class GUIMembreController implements Initializable {
     private void switchForum(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GUIForum.fxml"));
         Parent root = (Parent) loader.load();
-            setNode(root);
-        GUIForumController controller = loader.getController();
-        controller.setId(id);
+        setNode(root);
 
     }
 

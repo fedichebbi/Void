@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -65,8 +66,10 @@ public class GUILoginController implements Initializable {
             alerter("Verifier vos coordonnés");
         } else if (verif.equals("admin")) {
             alerter("Bienvenue " + verif);
+            ((Node) (event.getSource())).getScene().getWindow().hide();
             redirecting("Admin/GUIDashboard.fxml", "Interface Admin", event);
         } else if (verif.equals("membre")) {
+            ((Node) (event.getSource())).getScene().getWindow().hide();
             redirectMember("Membre/GUIMembre.fxml", event, usr);
         }
 
@@ -82,7 +85,7 @@ public class GUILoginController implements Initializable {
     }
     
     private void redirecting(String path, String title, Event event) throws Exception {
-        ((Node) (event.getSource())).getScene().getWindow().hide();
+        //((Node) (event.getSource())).getScene().getWindow().hide();
         
         Parent root = FXMLLoader.load(getClass().getResource(path));
         Stage stage = new Stage();
@@ -120,6 +123,11 @@ public class GUILoginController implements Initializable {
         GUIs.Membre.GUIMembreController controller = loader.getController();
         controller.getUser(usr);
         stage.show();
+    }
+
+    @FXML
+    private void forgetPass(MouseEvent event) throws Exception {
+        redirecting("GUIForgetPass.fxml", "Mot de passe oublié", event);
     }
     
 }
